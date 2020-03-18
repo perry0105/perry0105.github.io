@@ -5,8 +5,8 @@
   let unregisterHandlerFunctions = [];
 
   $(document).ready(function () {
-    alert(1);
-    alert(2);
+//    alert(1);
+//    alert(2);
     console.log(">>>>>>>>>1111");
     console.log(">>>>>>>>>2222");
     tableau.extensions.initializeAsync().then(function () {
