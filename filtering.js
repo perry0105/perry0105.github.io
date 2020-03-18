@@ -64,6 +64,7 @@
       buildFiltersTable(dashboardfilters);
       console.log(">>>>>>src");
       console.log('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
+      alert('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
       $('testframe').attr('src', 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
     });
   }
