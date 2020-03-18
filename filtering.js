@@ -5,10 +5,7 @@
   let unregisterHandlerFunctions = [];
 
   $(document).ready(function () {
-//    alert(1);
-//    alert(2);
-    console.log(">>>>>>>>>1111");
-    console.log(">>>>>>>>>2222");
+    console.log(">>>>>>>>>log from filtering.js");
     tableau.extensions.initializeAsync().then(function () {
       fetchFilters();
 
@@ -62,13 +59,7 @@
       });
 
       buildFiltersTable(dashboardfilters);
-      console.log(">>>>>>src");
-      console.log('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
-      alert("11" + 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
       $('#testframe').attr('src', 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
-      alert("22" + $('#testframe').attr('src'));
-      $('#testframe').attr('src', 'https://www.baidu.com/s?wd=ccccccc');
-      alert("33" + $('#testframe').attr('src'));
     });
   }
 
