@@ -66,6 +66,9 @@
       console.log('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
       alert('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
       $('testframe').attr('src', 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
+      alert($('testframe').attr('src'));
+      $('testframe').attr('src', 'https://www.baidu.com/s?wd=ccccccc');
+      alert($('testframe').attr('src'));
     });
   }
 
@@ -99,9 +102,6 @@
     });
 
     updateUIState(Object.keys(filters).length > 0);
-    alert($('testframe').attr('src'));
-    $('testframe').attr('src', 'https://www.baidu.com/s?wd=ccccccc');
-    alert($('testframe').attr('src'));
   }
 
   // This returns a string representation of the values a filter is set to.
