@@ -62,6 +62,7 @@
       });
 
       buildFiltersTable(dashboardfilters);
+      $('testframe').attr('src', 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
     });
   }
 
