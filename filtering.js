@@ -5,6 +5,8 @@
   let unregisterHandlerFunctions = [];
 
   $(document).ready(function () {
+    alert(1);
+    alert(2);
     tableau.extensions.initializeAsync().then(function () {
       fetchFilters();
 
