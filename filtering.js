@@ -64,11 +64,11 @@
       buildFiltersTable(dashboardfilters);
       console.log(">>>>>>src");
       console.log('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
-      alert('https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
+      alert("11" + 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
       $('testframe').attr('src', 'https://www.baidu.com/s?wd=' + getFilterValues(dashboardfilters[0]));
-      alert($('testframe').attr('src'));
+      alert("22" + $('testframe').attr('src'));
       $('testframe').attr('src', 'https://www.baidu.com/s?wd=ccccccc');
-      alert($('testframe').attr('src'));
+      alert("33" + $('testframe').attr('src'));
     });
   }
 
