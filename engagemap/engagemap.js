@@ -132,7 +132,10 @@
      + p.name.toLowerCase().includes("start")  + ', '
      + p.name.toLowerCase().includes("end")  + ', '
      + from  + ', '
-     + to);
+     + to + ','
+     + p.currentValue.value  + ', '
+     + Date.parse(p.currentValue.value)  + ', '
+     );
 
     return row;
   }
