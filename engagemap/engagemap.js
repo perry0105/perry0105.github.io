@@ -8,30 +8,19 @@
       tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
         parameters.forEach(function (p) {
           p.addEventListener(tableau.TableauEventType.ParameterChanged, onParameterChange);
-          parameterRow(p);
+          changeFilters(p);
         });
       });
     });
   });
 
-  // When the parameter is changed, we recreate the row with the updated values.  This keeps the code
-  // clean, and emulates the approach that something like React does where it "rerenders" the UI with
-  // the updated data.
-  //
-  // To avoid multiple layout processing in the browser, we build the new row unattached to the DOM,
-  // and then attach it at the very end.  This helps avoid jank.
   function onParameterChange (parameterChangeEvent) {
     parameterChangeEvent.getParameterAsync().then(function (param) {
-      const newRow = parameterRow(param);
-      const oldRow = $("tr[data-fieldname='" + param.id + "'");
-      oldRow.replaceWith(newRow);
+      changeFilters(param);
     });
   }
 
-  // This function creates a subtree of a row for a specific parameter.
-  function parameterRow (p) {
-    let row = $('<tr>').attr('data-fieldname', p.id);
-
+  function changeFilters (p) {
     let from = '';
     let to = ''
     try {
@@ -51,19 +40,7 @@
         }
 
         $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
-        $('#iframe_url').text('https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to
-         + p.name.toLowerCase() + ', '
-         + p.name.toLowerCase().includes("start")  + ', '
-         + p.name.toLowerCase().includes("end")  + ', '
-         + from  + ', '
-         + to + ','
-         + p.currentValue.value  + ', '
-         + Date.parse(p.currentValue.value)  + ', '
-         );
     } catch (e) {
-        $('#iframe_url').text(e);
     }
-
-    return row;
   }
 })();
