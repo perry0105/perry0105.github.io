@@ -23,6 +23,25 @@
 <div class="container">
   <div id="parameters">
     <h4>Disengagement Map</h4>
+    <div class="table-responsive">
+      <table id="loading" class="table">
+        <tbody><tr><td>Loading...</td></tr></tbody>
+      </table>
+      <table id="parameterTable" class="table table-striped hidden">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Data Type</th>
+          <th>Current Value</th>
+          <th style="width: 100%">Allowable Values</th>
+        </tr>
+        </thead>
+        <tbody><!-- Stuff will be inserted here --></tbody>
+      </table>
+      <table id="addParameterWarning" class="table bg-danger hidden">
+        <tbody><tr><td>To use this extension, add a parameter to the workbook.</td></tr></tbody>
+      </table>
+    </div>
     <div id="iframe_url"></div>
     <div class="table-responsive">
       <iframe id="map_iframe" src="https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=&to=" width="1000px" height="500px"></iframe>
