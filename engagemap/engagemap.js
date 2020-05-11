@@ -123,19 +123,20 @@
             p.name.toLowerCase().includes("to")) {
             to = Date.parse(p.currentValue.value);
         }
+        
+        $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
+        $('#iframe_url').text('https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to
+         + p.name.toLowerCase() + ', '
+         + p.name.toLowerCase().includes("start")  + ', '
+         + p.name.toLowerCase().includes("end")  + ', '
+         + from  + ', '
+         + to + ','
+         + p.currentValue.value  + ', '
+         + Date.parse(p.currentValue.value)  + ', '
+         );
     } catch (e) {
         $('#iframe_url').text(e);
     }
-    $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
-    $('#iframe_url').text('https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to
-     + p.name.toLowerCase() + ', '
-     + p.name.toLowerCase().includes("start")  + ', '
-     + p.name.toLowerCase().includes("end")  + ', '
-     + from  + ', '
-     + to + ','
-     + p.currentValue.value  + ', '
-     + Date.parse(p.currentValue.value)  + ', '
-     );
 
     return row;
   }
