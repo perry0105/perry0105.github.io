@@ -56,5 +56,6 @@
     }
 
     $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
+    alert($('#map_iframe').attr('src'));
   }
 })();
