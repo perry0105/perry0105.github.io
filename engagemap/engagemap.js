@@ -11,6 +11,7 @@
       tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
         parameters.forEach(function (p) {
           p.addEventListener(tableau.TableauEventType.ParameterChanged, onParameterChange);
+          parameterRow(p).appendTo(tableBody);
         });
 
         // This is used to manipulate what part of the UI is visible.  If there are no parameters
@@ -34,28 +35,77 @@
   // and then attach it at the very end.  This helps avoid jank.
   function onParameterChange (parameterChangeEvent) {
     parameterChangeEvent.getParameterAsync().then(function (param) {
-      changeFilter(param);
+      const newRow = parameterRow(param);
+      const oldRow = $("tr[data-fieldname='" + param.id + "'");
+      oldRow.replaceWith(newRow);
     });
   }
 
-  // This function creates a subtree of a row for a specific parameter.
-  function changeFilter (p) {
-    let src = $('#map_iframe').attr('src');
-    let indexFrom = str.indexOf("from=");
-    let indexTo = str.indexOf("&to=");
-    let from = str.substring(indexFrom + 5, indexTo)
-    let to = str.substring(indexTo + 4)
+  //
+  // DOM creation methods
+  //
 
-    if (p.name.toLowerCase().includes("begin") ||
-        p.name.toLowerCase().includes("start") ||
-        p.name.toLowerCase().includes("from")) {
-        from = Date.parse(p.currentValue.value);
-    } else if (p.name.toLowerCase().includes("end") ||
-        p.name.toLowerCase().includes("to")) {
-        to = Date.parse(p.currentValue.value);
+  // A cell in the table
+  function cell (value) {
+    const row = $('<td>');
+    row.append(value);
+    return row;
+  }
+
+  // A simple cell that contains a text value
+  function textCell (value) {
+    const cellElement = $('<td>');
+    cellElement.text(value);
+    return cellElement;
+  }
+
+  // The allowable values column has a complex structure, so to make things easier/cleaner,
+  // this function creates the subtree for the value of the allowable values column.
+  function allowableValues (value) {
+    function termKey (key) {
+      return $('<dt>').attr('id', key).text(key);
     }
 
-    $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
-    alert($('#map_iframe').attr('src'));
+    function termValue (value, default_) {
+      return $('<dd>').text(value || default_);
+    }
+
+    const allowable = $('<dl class="dl-horizontal">');
+
+    switch (value.type) {
+      case 'all':
+        allowable.append(termKey('Restrictions'));
+        allowable.append(termValue('None'));
+        break;
+      case 'list':
+        value.allowableValues.forEach(function (allowableValue) {
+          allowable.append(termKey('List Value'));
+          allowable.append(termValue(allowableValue.formattedValue));
+        });
+        break;
+      case 'range':
+        allowable.append(termKey('Min Value'));
+        allowable.append(termValue(value.minValue.formattedValue, 'No Min'));
+        allowable.append(termKey('Max Value'));
+        allowable.append(termValue(value.maxValue.formattedValue, 'No Max'));
+        allowable.append(termKey('Step Size'));
+        allowable.append(termValue(value.stepSize, 'default'));
+        break;
+      default:
+        console.error('Unknown Parameter value type: ' + value.type);
+    }
+
+    return allowable;
+  }
+
+  // This function creates a subtree of a row for a specific parameter.
+  function parameterRow (p) {
+    let row = $('<tr>').attr('data-fieldname', p.id);
+    row.append(textCell(p.name));
+    row.append(textCell(p.dataType));
+    row.append(textCell(p.currentValue.formattedValue));
+    row.append(cell(allowableValues(p.allowableValues)));
+
+    return row;
   }
 })();
