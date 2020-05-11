@@ -110,10 +110,10 @@
     let to = ''
     try {
         let src = $('#map_iframe').attr('src');
-        let indexFrom = str.indexOf("from=");
-        let indexTo = str.indexOf("&to=");
-        from = str.substring(indexFrom + 5, indexTo);
-        to = str.substring(indexTo + 4);
+        let indexFrom = src.indexOf("from=");
+        let indexTo = src.indexOf("&to=");
+        from = src.substring(indexFrom + 5, indexTo);
+        to = src.substring(indexTo + 4);
 
         if (p.name.toLowerCase().includes("begin") ||
             p.name.toLowerCase().includes("start") ||
@@ -123,7 +123,7 @@
             p.name.toLowerCase().includes("to")) {
             to = Date.parse(p.currentValue.value);
         }
-        
+
         $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to);
         $('#iframe_url').text('https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + from + '&to=' + to
          + p.name.toLowerCase() + ', '
