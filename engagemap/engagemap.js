@@ -107,6 +107,7 @@
     row.append(cell(allowableValues(p.allowableValues)));
     row.append(textCell(JSON.stringify(p.currentValue)));
     row.append(textCell(p.currentValue.value));
+    row.append(textCell(Date.parse(p.currentValue.value)));
 
     return row;
   }
