@@ -105,6 +105,8 @@
     row.append(textCell(p.dataType));
     row.append(textCell(p.currentValue.formattedValue));
     row.append(cell(allowableValues(p.allowableValues)));
+    row.append(textCell(p.currentValue));
+    row.append(textCell(p.currentValue.value));
 
     return row;
   }
