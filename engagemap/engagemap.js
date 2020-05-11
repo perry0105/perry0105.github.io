@@ -34,12 +34,12 @@
   // and then attach it at the very end.  This helps avoid jank.
   function onParameterChange (parameterChangeEvent) {
     parameterChangeEvent.getParameterAsync().then(function (param) {
-      addFilter(param);
+      changeFilter(param);
     });
   }
 
   // This function creates a subtree of a row for a specific parameter.
-  function parameterRow (p) {
+  function changeFilter (p) {
     let src = $('#map_iframe').attr('src');
     let indexFrom = str.indexOf("from=");
     let indexTo = str.indexOf("&to=");
