@@ -106,12 +106,14 @@
     row.append(textCell(p.currentValue.formattedValue));
     row.append(cell(allowableValues(p.allowableValues)));
 
+    let from = '';
+    let to = ''
     try {
         let src = $('#map_iframe').attr('src');
         let indexFrom = str.indexOf("from=");
         let indexTo = str.indexOf("&to=");
-        let from = str.substring(indexFrom + 5, indexTo)
-        let to = str.substring(indexTo + 4)
+        from = str.substring(indexFrom + 5, indexTo);
+        to = str.substring(indexTo + 4);
 
         if (p.name.toLowerCase().includes("begin") ||
             p.name.toLowerCase().includes("start") ||
