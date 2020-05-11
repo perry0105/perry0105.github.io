@@ -2,8 +2,6 @@
 
 (function () {
   $(document).ready(function () {
-    const tableBody = table.children('tbody');
-
     // This is the entry point into the extension.  It initializes the Tableau Extensions Api, and then
     // grabs all of the parameters in the workbook, processing each one individually.
     tableau.extensions.initializeAsync().then(function () {
