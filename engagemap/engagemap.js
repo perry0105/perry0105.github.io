@@ -106,6 +106,10 @@
     row.append(textCell(p.currentValue.formattedValue));
     row.append(cell(allowableValues(p.allowableValues)));
 
+    let to = Date.parse(p.currentValue.value);
+    $('#map_iframe').attr('src', 'https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + '' + '&to=' + to);
+    $('#iframe_url').text('https://driveota.nvidia.com/admin/ui/files/disengagement_map.htm?from=' + '' + '&to=' + to);
+
     return row;
   }
 })();
