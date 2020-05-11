@@ -8,6 +8,7 @@
       tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
         parameters.forEach(function (p) {
           p.addEventListener(tableau.TableauEventType.ParameterChanged, onParameterChange);
+          parameterRow(p);
         });
       });
     });
