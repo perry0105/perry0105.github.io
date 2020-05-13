@@ -39,7 +39,7 @@
             to = Date.parse(p.currentValue.value);
         }
 
-        $('#map_iframe').attr('src', 'https://192.168.88.128?from=' + from + '&to=' + to);
+        $('#map_iframe').attr('src', 'https://10.19.133.211?from=' + from + '&to=' + to);
     } catch (e) {
     }
   }
